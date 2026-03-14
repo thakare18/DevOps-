@@ -1,0 +1,24 @@
+FROM node:18
+# linux os + nodejs
+
+# Create app directory
+WORKDIR /app
+
+# copy package.json and package-lock.json to the current working directory
+COPY package*.json ./
+# COPY package*.json ./ 
+#COPY package-lock.json ./ 
+
+# Install app dependencies node modules using  package.json file and package-lock.json file
+RUN npm install
+
+# copy server.js to the current working directory mainly express code in that file
+COPY server.js ./
+
+# Make port 3000 available to the world outside this container
+EXPOSE 3000 
+
+# cmd to run the server.js file using node command
+CMD ["node", "server.js"]
+
+# its a blueprint that how the docker image can be build
